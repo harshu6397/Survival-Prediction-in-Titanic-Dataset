@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ML API</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            background-color: rgb(53, 141, 36);
+        }
+
+        h1 {
+            color: wheat;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form{
+            margin-top: 10px;
+        }
+
+        input {
+            background-color: black;
+            color: white;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 7px;
+            width: 300px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 7px;
+            width: 250px;
+        }
+
+        .link {
+            color: white;
+        }
+
+        p{
+            font-size: 20px;
+            color: white;
+        }
+
+        table{
+            color: white;
+            margin: auto;
+        }
+
+        .output{
+            color: white;
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Survival Prediction In Titanic Dataset</h1>
+        
+        <p>Feature overview</p>
+        <table border="2px solid black">
+            <tbody>
+                <tr>
+                    <th><b>Variable</b></th>
+                    <th><b>Definition</b></th>
+                    <th><b>Key</b></th>
+                </tr>
+                <tr>
+                    <td>pclass</td>
+                    <td>Ticket class</td>
+                    <td>1 = 1st, 2 = 2nd, 3 = 3rd</td>
+                </tr>
+                <tr>
+                    <td>sex</td>
+                    <td>Sex</td>
+                    <td>1 = Male, 0 = Female</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>Age in years</td>
+                    <td>Any possible Age value</td>
+                </tr>
+                <tr>
+                    <td>sibsp</td>
+                    <td># of siblings / spouses aboard the Titanic</td>
+                    <td>Possible values: {0, 1, 2, 3, 4, 5, 8}</td>
+                </tr>
+                <tr>
+                    <td>parch</td>
+                    <td># of parents / children aboard the Titanic</td>
+                    <td>Possible values: {0, 1, 2, 3, 4, 5, 6}</td>
+                </tr>
+                <tr>
+                    <td>fare</td>
+                    <td>Passenger fare</td>
+                    <td>Any possible value for Fare</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="text" name="Pclass" placeholder="Pclass" required="required" /><br>
+            <input type="text" name="Sex" placeholder="Sex" required="required" /><br>
+            <input type="text" name="Age" placeholder="Age" required="required" /><br>
+            <input type="text" name="SibSp" placeholder="SibSp" required="required" /><br>
+            <input type="text" name="Parch" placeholder="Parch" required="required" /><br>
+            <input type="text" name="Fare" placeholder="Fare" required="required" /><br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <br>
+        <br>
+        <div class="output">
+            {{ prediction_text }}
+        </div>
+
+    </div>
+
+    <div class="link">Note: To Know more about the data
+        <a href="https://www.kaggle.com/competitions/titanic/overview">Click Here</a>
+    </div>
+
+</body>
+
+</html>
